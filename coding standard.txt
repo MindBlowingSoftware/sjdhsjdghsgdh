@@ -1,0 +1,16 @@
+﻿Very Less code
+All the times exceptions must be logged with exception message and stack trace
+No Unused variables
+More code coverage using static code analysis
+Loose Coupling with Interfaces and Abstract classes
+OOPS Concepts must be used
+Unit Testing  and Moq
+Dependency Injection
+Business Rules must be divided in to classes
+Business methods and business models each in different project or maintained in separate folders
+All objects must be disposed and cleared
+Install Refactor and check
+Create a wrapper and use the classes behind it
+Coding Standards must be followed for all naming conventions
+Don’t Duplicate the code
+Code must be deployable in   Production that means it should have standards in   Coding  ,Testing ,Building
