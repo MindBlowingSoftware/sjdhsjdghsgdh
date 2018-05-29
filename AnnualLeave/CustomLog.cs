@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using log4net;
 using log4net.Core;
 
-namespace AnnualLeave.Test
+namespace AnnualLeave
 {
-    internal class CustomLog : ILog
+    [ExcludeFromCodeCoverage]
+    public class CustomLog : ILog
     {
         public ILogger Logger { get; }
         public void Debug(object message)

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 using AnnualLeave.Shared.Interface;
 using AnnualLeave.Shared.Model;
 using log4net;
 
 namespace AnnualLeave.Client1
 {
+    [ExcludeFromCodeCoverage]
     public class Client1EmployeeLeaveDataContext : IEmployeeLeaveDataContext
     {
         private readonly ILog _log;

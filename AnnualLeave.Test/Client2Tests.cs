@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AnnualLeave.Client1;
-using AnnualLeave.Client1;
+using AnnualLeave.Client2;
 using AnnualLeave.Shared.Interface;
 using AnnualLeave.Shared.Model;
 using NUnit.Framework;
@@ -14,7 +14,7 @@ using Rhino.Mocks;
 namespace AnnualLeave.Test
 {
     [TestFixture, ExcludeFromCodeCoverage]
-    public class Client1Tests
+    public class Client2Tests
     {
         private Employee _testEmployee;
         private EmployeeLeaveRequest _testEmployeeLeaveRequest;
@@ -52,13 +52,13 @@ namespace AnnualLeave.Test
         }
 
         [Test]
-        public void Client1_Find_Employee_Function_Returns_Employee()
+        public void Client2_Find_Employee_Function_Returns_Employee()
         {
             //Arrange
-
+            
             var businessContext = MockRepository.GenerateStub<IEmployeeLeaveBusinessContext>();
             businessContext.Stub(b => b.FindEmployee(_testEmployee.EmployeeId)).Return(_testEmployee);
-            var sut = MockRepository.GenerateMock<Client1EmployeeLeave>(_log, businessContext);
+            var sut = MockRepository.GenerateMock<Client2EmployeeLeave>(_log,businessContext);
             //Act
 
             var actualResponse = sut.FindEmployee(_testEmployee.EmployeeId);
@@ -74,7 +74,7 @@ namespace AnnualLeave.Test
         }
 
         [Test]
-        public void Client1_Process_Employee_Function_Saves_Leave_Request_To_Db()
+        public void Client2_Process_Employee_Function_Saves_Leave_Request_To_Db()
         {
             //Arrange
 
@@ -84,13 +84,13 @@ namespace AnnualLeave.Test
             employee.ContactStartDate = DateTime.Today.AddDays(-90);
             employee.IsMarried = true;
             datacontext.Employees = new List<Employee>() { employee };
-
-            var businessContext = new Client1EmployeeLeaveBusinessContext(_log, datacontext);
-
-            var sut = MockRepository.GenerateMock<Client1EmployeeLeave>(_log, businessContext);
+            
+            var businessContext = new Client2EmployeeLeaveBusinessContext(_log,datacontext);
+           
+            var sut = MockRepository.GenerateMock<Client2EmployeeLeave>(_log, businessContext);
             //Act
 
-            sut.ProcessLeaveRequest(_leaveStartDate, _days, _reason, _employeeId);
+            sut.ProcessLeaveRequest(_leaveStartDate,_days,_reason,_employeeId);
             //Assert
             Assert.AreEqual(1, datacontext.EmployeeLeaveStore.Count);
             Assert.AreEqual(_testEmployeeLeaveRequest.EmployeeId, datacontext.EmployeeLeaveStore[0].EmployeeId);
@@ -100,7 +100,7 @@ namespace AnnualLeave.Test
         }
 
         [Test]
-        public void Client1_Process_Employee_Function_Doesnt_Save_When_Days_More_Than_20()
+        public void Client2_Process_Employee_Function_Doesnt_Save_When_Days_More_Than_20()
         {
             //Arrange
 
@@ -109,10 +109,10 @@ namespace AnnualLeave.Test
             var employee = _testEmployee;
             employee.IsMarried = true;
             employee.ContactStartDate = DateTime.Today.AddDays(-90);
-            datacontext.Employees = new List<Employee>() { employee };
-            var businessContext = new Client1EmployeeLeaveBusinessContext(_log, datacontext);
+            datacontext.Employees = new List<Employee>() { employee
+            var businessContext = new Client2EmployeeLeaveBusinessContext(_log, datacontext);
 
-            var sut = MockRepository.GenerateMock<Client1EmployeeLeave>(_log, businessContext);
+            var sut = MockRepository.GenerateMock<Client2EmployeeLeave>(_log, businessContext);
 
             var days = 25;
 
@@ -131,7 +131,7 @@ namespace AnnualLeave.Test
         }
 
         [Test]
-        public void Client1_Process_Employee_Function_Doesnt_Save_When_Contract_date_is_recent()
+        public void Client2_Process_Employee_Function_Doesnt_Save_When_Contract_date_is_recent()
         {
             //Arrange
 
@@ -141,10 +141,10 @@ namespace AnnualLeave.Test
             employee.ContactStartDate = DateTime.Today;
             employee.IsMarried = false;
             datacontext.Employees = new List<Employee>() { employee };
-            var businessContext = new Client1EmployeeLeaveBusinessContext(_log, datacontext);
+            var businessContext = new Client2EmployeeLeaveBusinessContext(_log, datacontext);
 
-            var sut = MockRepository.GenerateMock<Client1EmployeeLeave>(_log, businessContext);
-
+            var sut = MockRepository.GenerateMock<Client2EmployeeLeave>(_log, businessContext);
+            
             //Act
 
             try

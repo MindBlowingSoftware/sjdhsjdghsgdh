@@ -23,19 +23,22 @@ namespace AnnualLeave.Client1
             {
                 var ex = new Exception("Invalid leave request.");
                 _log.Error(ex.Message, ex);
+                return;
             }
 
             if (days > 20)
             {
                 var ex = new Exception("Invalid leave request.");
                 _log.Error(ex.Message, ex);
+                return;
             }
 
             var leaveRequest = new EmployeeLeaveRequest
             {
                 EmployeeId = employeeId,
                 LeaveStartDateTime = leaveStartDate,
-                LeaveEndDateTime = leaveStartDate.AddDays(days)
+                LeaveEndDateTime = leaveStartDate.AddDays(days),
+                IsApproved = true
             };
 
             _dataContext.ProcessLeaveRequest(leaveRequest);

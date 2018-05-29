@@ -52,8 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client2Tests.cs" />
     <Compile Include="Client1Tests.cs" />
-    <Compile Include="CustomLog.cs" />
     <Compile Include="FakeEmployeeLeaveDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

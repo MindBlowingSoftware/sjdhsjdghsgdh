@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnualLeave", "AnnualLeave\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnualLeave.Test", "AnnualLeave.Test\AnnualLeave.Test.csproj", "{813E7E51-FFCE-496F-ADAD-FF119F255A2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnualLeave.ConsoleApp", "AnnualLeave.ConsoleApp\AnnualLeave.ConsoleApp.csproj", "{EC27E2F2-14C5-4AA5-9B81-FF27E6FCCAC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{813E7E51-FFCE-496F-ADAD-FF119F255A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{813E7E51-FFCE-496F-ADAD-FF119F255A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{813E7E51-FFCE-496F-ADAD-FF119F255A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC27E2F2-14C5-4AA5-9B81-FF27E6FCCAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC27E2F2-14C5-4AA5-9B81-FF27E6FCCAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC27E2F2-14C5-4AA5-9B81-FF27E6FCCAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC27E2F2-14C5-4AA5-9B81-FF27E6FCCAC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
