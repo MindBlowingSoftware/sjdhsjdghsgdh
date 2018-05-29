@@ -1,6 +1,7 @@
 ﻿using System;
+using AnnualLeave.Shared.Model;
 
-namespace AnnualLeave
+namespace AnnualLeave.Shared.Interface
 {
     public interface IEmployeeLeaveBusinessContext
     {

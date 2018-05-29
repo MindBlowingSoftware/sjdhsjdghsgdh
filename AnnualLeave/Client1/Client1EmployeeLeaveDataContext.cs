@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-using AnnualLeave;
+using AnnualLeave.Shared.Interface;
+using AnnualLeave.Shared.Model;
+using log4net;
 
-namespace AnnualLeave
+namespace AnnualLeave.Client1
 {
-    public class EmployeeLeaveDataContext : IEmployeeLeaveDataContext
+    public class Client1EmployeeLeaveDataContext : IEmployeeLeaveDataContext
     {
-        public void ProcessLeaveRequest(DateTime leaveStartDate, int days, string reason, int employeeId)
+        private readonly ILog _log;
+
+        public Client1EmployeeLeaveDataContext(ILog log)
         {
-            var employee = FindEmployee(employeeId);
-            
-            if((DateTime.Now - employee.ContactStartDate).TotalDays <= 90 && !employee.IsMarried)
-                throw new Exception("Invalid leave request.");
-
-            if(days > 20)
-                throw new Exception("Invalid leave request.");
-
-            var leaveRequest = new EmployeeLeaveRequest();
-            leaveRequest.EmployeeId = employeeId;
-            leaveRequest.LeaveStartDateTime = leaveStartDate;
-            leaveRequest.LeaveEndDateTime = leaveStartDate.AddDays(days);
+            _log = log;
+        }
+        public void ProcessLeaveRequest(EmployeeLeaveRequest leaveRequest)
+        {
+            SaveLeaveRequest(leaveRequest);
         }
 
-        public void SaveLeaveRequest(EmployeeLeaveRequest leaveRequest)
+        private static void SaveLeaveRequest(EmployeeLeaveRequest leaveRequest)
         {
             var sqlConnection = new SqlConnection("Data Source=local;Initial Catalog=Employee;Integrated Security=True");
             sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Insert into EmployeeLeave (EmployeeId, StartDateTime, EndDateTime) values ('@EmployeeId','@StartDateTime', '@EndDateTime')";
+            var cmd = new SqlCommand
+            {
+                CommandText =
+                    "Insert into EmployeeLeave (EmployeeId, StartDateTime, EndDateTime) values ('@EmployeeId','@StartDateTime', '@EndDateTime')"
+            };
             cmd.Parameters.AddWithValue("EmployeeId", leaveRequest.EmployeeId);
             cmd.Parameters.AddWithValue("StartDateTime", leaveRequest.LeaveStartDateTime);
             cmd.Parameters.AddWithValue("EndDateTime", leaveRequest.LeaveEndDateTime);

@@ -1,6 +1,6 @@
 using System;
 
-namespace AnnualLeave
+namespace AnnualLeave.Shared.Model
 {
     public class Employee
     {

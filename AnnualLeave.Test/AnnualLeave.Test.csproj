@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{275805B5-3F61-4E1A-B6D3-56F2CB2FEC6B}</ProjectGuid>
+    <ProjectGuid>{813E7E51-FFCE-496F-ADAD-FF119F255A2C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnnualLeave</RootNamespace>
-    <AssemblyName>AnnualLeave</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>AnnualLeave.Test</RootNamespace>
+    <AssemblyName>AnnualLeave.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,30 +34,37 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\nunit.framework.2.63.0\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client2\Client2EmployeeLeave.cs" />
-    <Compile Include="Client2\Client2EmployeeLeaveBusinessContext.cs" />
-    <Compile Include="Client2\Client2EmployeeLeaveDataContext.cs" />
-    <Compile Include="Shared\Model\Employee.cs" />
-    <Compile Include="Client1\Client1EmployeeLeave.cs" />
-    <Compile Include="Client1\Client1EmployeeLeaveBusinessContext.cs" />
-    <Compile Include="Client1\Client1EmployeeLeaveDataContext.cs" />
-    <Compile Include="Shared\Model\EmployeeLeaveRequest.cs" />
-    <Compile Include="Shared\Interface\IEmployeeLeave.cs" />
-    <Compile Include="Shared\Interface\IEmployeeLeaveBusinessContext.cs" />
-    <Compile Include="Shared\Interface\IEmployeeLeaveDataContext.cs" />
+    <Compile Include="Client1Tests.cs" />
+    <Compile Include="CustomLog.cs" />
+    <Compile Include="FakeEmployeeLeaveDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnnualLeave\AnnualLeave.csproj">
+      <Project>{275805b5-3f61-4e1a-b6d3-56f2cb2fec6b}</Project>
+      <Name>AnnualLeave</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

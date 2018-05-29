@@ -1,14 +1,16 @@
 ﻿using System;
+using AnnualLeave.Shared.Interface;
+using AnnualLeave.Shared.Model;
 using log4net;
 
-namespace AnnualLeave
+namespace AnnualLeave.Client1
 {
-    public class EmployeeLeave : IEmployeeLeave
+    public class Client1EmployeeLeave : IEmployeeLeave
     {
         private readonly ILog _log;
         private readonly IEmployeeLeaveBusinessContext _businessContext;
 
-        public EmployeeLeave(ILog log, IEmployeeLeaveBusinessContext businessContext)
+        public Client1EmployeeLeave(ILog log, IEmployeeLeaveBusinessContext businessContext)
         {
             _log = log;
             _businessContext = businessContext;
